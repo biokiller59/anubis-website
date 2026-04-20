@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Anubis Scripts</title>
+    <link rel="stylesheet" href="../css/airflow-style.css">
+    <style>
+        .page-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .about-section {
+            padding: 2rem 0 4rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all var(--transition);
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .about-card-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .about-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .about-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .creator-card {
+            grid-column: span 2;
+        }
+
+        .creator-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .creator-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--surface-light);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .creator-name {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .creator-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .creator-stat {
+            text-align: center;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+        }
+
+        .security-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem;
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-secondary);
+        }
+
+        .badge-icon {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .stats-banner {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .stats-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-box {
+            padding: 1.5rem;
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: all var(--transition);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .stat-box .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-box .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box .stat-label {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .creator-card {
+                grid-column: span 1;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-brand">
+                <img src="../assets/logo.png" alt="Anubis" class="brand-logo-img" onerror="this.style.display='none'">
+                Anubis Scripts
+            </div>
+            <nav class="nav">
+                <a class="nav-link" href="../index.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                    </svg>
+                    Home
+                </a>
+                <a class="nav-link" href="../scripts.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"></path>
+                    </svg>
+                    Scripts
+                </a>
+                <a class="nav-link" href="about.html" style="color: var(--accent);">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                    </svg>
+                    About
+                </a>
+                <a class="nav-link" href="https://discord.gg/FeSD9YyA4r" target="_blank">
+                    <svg class="nav-icon discord-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"></path>
+                    </svg>
+                    Discord
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">About Anubis</h1>
+            <p class="page-description">Your trusted Roblox script hub</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <!-- Mission -->
+                <div class="about-card">
+                    <div class="about-icon">🎯</div>
+                    <h2 class="about-card-title">Our Mission</h2>
+                    <p class="about-card-text">
+                        Anubis Scripts is dedicated to providing the Roblox community with high-quality,
+                        reliable executor scripts. We believe in making powerful tools accessible to everyone
+                        while maintaining the highest standards of quality and safety.
+                    </p>
+                </div>
+
+                <!-- Features -->
+                <div class="about-card">
+                    <div class="about-icon">✨</div>
+                    <h2 class="about-card-title">What We Offer</h2>
+                    <ul class="about-list">
+                        <li>Tested and verified scripts</li>
+                        <li>Regular updates and new additions</li>
+                        <li>Community-driven development</li>
+                        <li>Safe and secure platform</li>
+                        <li>Multi-language support</li>
+                    </ul>
+                </div>
+
+                <!-- Creator -->
+                <div class="about-card creator-card">
+                    <div class="creator-header">
+                        <div class="creator-avatar">👨‍💻</div>
+                        <div>
+                            <h2 class="about-card-title">Creator</h2>
+                            <p class="creator-name">Anubis Team</p>
+                        </div>
+                    </div>
+                    <p class="about-card-text">
+                        Experienced Roblox script developers specializing in executor environments.
+                        Passionate about creating tools that enhance the gaming experience while
+                        maintaining security and reliability.
+                    </p>
+                    <div class="creator-stats">
+                        <div class="creator-stat">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="creator-stat">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Users Helped</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technology -->
+                <div class="about-card">
+                    <div class="about-icon">🛠️</div>
+                    <h2 class="about-card-title">Technology Stack</h2>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Lua</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML5/CSS3</span>
+                        <span class="tech-tag">Canvas API</span>
+                    </div>
+                    <p class="about-card-text">
+                        Built with modern web technologies to ensure the best user experience.
+                    </p>
+                </div>
+
+                <!-- Community -->
+                <div class="about-card">
+                    <div class="about-icon">👥</div>
+                    <h2 class="about-card-title">Join Our Community</h2>
+                    <p class="about-card-text">
+                        Connect with thousands of Roblox enthusiasts, share your scripts,
+                        and get help from experienced developers.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://discord.gg/FeSD9YyA4r" target="_blank" class="social-link">
+                            <span class="social-icon">💬</span>
+                            <span>Discord</span>
+                        </a>
+                        <a href="https://github.com/biokiller59" target="_blank" class="social-link">
+                            <span class="social-icon">📱</span>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Safety -->
+                <div class="about-card">
+                    <div class="about-icon">🔒</div>
+                    <h2 class="about-card-title">Safety & Security</h2>
+                    <p class="about-card-text">
+                        Your privacy and security are our top priorities. All scripts
+                        are reviewed before publication.
+                    </p>
+                    <div class="security-badges">
+                        <div class="security-badge">
+                            <span class="badge-icon">✓</span>
+                            <span>Secure Platform</span>
+                        </div>
+                        <div class="security-badge">
+                            <span class="badge-icon">✓</span>
+                            <span>No Data Storage</span>
+                        </div>
+                        <div class="security-badge">
+                            <span class="badge-icon">✓</span>
+                            <span>Script Review</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-banner">
+                <h2 class="stats-title">Platform Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-icon">📜</div>
+                        <div class="stat-number">8+</div>
+                        <div class="stat-label">Total Scripts</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number">1,500+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">📥</div>
+                        <div class="stat-number">400K+</div>
+                        <div class="stat-label">Downloads</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-number">4.8</div>
+                        <div class="stat-label">Avg Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ANUBIS</h3>
+                    <p>Premium Roblox script hub. Tested scripts for every game.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="../index.html" class="footer-link">Home</a>
+                    <a href="../scripts.html" class="footer-link">Scripts</a>
+                    <a href="about.html" class="footer-link">About</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <a href="https://discord.gg/FeSD9YyA4r" target="_blank" class="footer-link">Discord</a>
+                    <a href="https://github.com/biokiller59" target="_blank" class="footer-link">GitHub</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="legal/terms.html" class="footer-link">Terms of Service</a>
+                    <a href="legal/privacy.html" class="footer-link">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Anubis Scripts. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
